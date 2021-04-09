@@ -1,11 +1,3 @@
-        
-
-
-
-
-
-
-
 (function ($) {
     $.fn.ripple = function (options) {
         var settings = $.extend(
