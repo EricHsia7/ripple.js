@@ -1,17 +1,37 @@
-        $(".bottom-btn-b a").on("click", function (eee) {
+        
+
+
+
+
+
+
+
+(function ($) {
+    $.fn.prompt = function (options) {
+        var settings = $.extend(
+            {
+                opacity: "0.6",
+                color: "#000",
+                time: "0.6",
+                darkmodecolor:"#fff"
+            },
+            options
+        );
+        return this.each(function () {
+            $(this).on("click", function (eee) {
             var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             var rippleid = "";
             for (var i = 0; i < 16; i++) {
                 var randomNumber = Math.floor(Math.random() * ppchars.length);
                 rippleid += ppchars.substring(randomNumber, randomNumber + 1);
             }
-            var xPos = eee.pageX - $(this).offset().left - $(this).width() * 2;
-            var yPos = eee.pageY - $(this).offset().top - $(this).width() * 2;
-            $(this).append(
+            var xPos = eee.pageX - $(eee).offset().left - $(eee).width() * 2;
+            var yPos = eee.pageY - $(eee).offset().top - $(eee).width() * 2;
+            $(eee).append(
                 '<div style="width:' +
-                    $(this).width() * 4 +
+                    $(eee).width() * 4 +
                     "px;height:" +
-                    $(this).width() * 4 +
+                    $(eee).width() * 4 +
                     "px;position:absolute;top:" +
                     yPos +
                     "px;left:" +
@@ -27,3 +47,7 @@
                 $("#" + rippleid).remove();
             }, 800);
         });
+            }
+        });
+    };
+})(jQuery);
