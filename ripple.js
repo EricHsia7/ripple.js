@@ -7,7 +7,7 @@
 
 
 (function ($) {
-    $.fn.prompt = function (options) {
+    $.fn.ripple = function (options) {
         var settings = $.extend(
             {
                 opacity: "0.6",
