@@ -1,9 +1,9 @@
         $(".bottom-btn-b a").on("click", function (eee) {
             var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var ppid = "";
+            var rippleid = "";
             for (var i = 0; i < 16; i++) {
                 var randomNumber = Math.floor(Math.random() * ppchars.length);
-                ppid += ppchars.substring(randomNumber, randomNumber + 1);
+                rippleid += ppchars.substring(randomNumber, randomNumber + 1);
             }
             var xPos = eee.pageX - $(this).offset().left - $(this).width() * 2;
             var yPos = eee.pageY - $(this).offset().top - $(this).width() * 2;
@@ -17,13 +17,13 @@
                     "px;left:" +
                     xPos +
                     'px;border-radius:99em;transform:scale(0);transition:transform 0.9s,opacity 0.8s;opacity:0.3; overflow:hidden; user-select:none;" id="' +
-                    ppid +
+                    rippleid +
                     '" class="btn-cc-pp"></div>'
             );
             setTimeout(function () {
-                $("#" + ppid).css({ transform: "scale(1)", opacity: "0" });
+                $("#" + rippleid).css({ transform: "scale(1)", opacity: "0" });
             }, 1);
             setTimeout(function () {
-                $("#" + ppid).remove();
+                $("#" + rippleid).remove();
             }, 800);
         });
