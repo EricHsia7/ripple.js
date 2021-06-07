@@ -1,6 +1,8 @@
-    function ripple(select,color,opacity,time) {
+    function ripple(select,color,opacity,time,removewh) {
 $(select).on( "click", function( eee ) {
+    if(removewh === 'true') {
   $(this).css({'width':'','height':''});
+    }
 var ogstyle = $(this).attr('style');
 
 var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
