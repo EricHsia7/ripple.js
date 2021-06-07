@@ -39,6 +39,6 @@ $('body').prompt({'message':'message(' + an + ')','time':1800,'animate':an});
 </script>
 </body>
 ```
-[Demo](https://erichsia7.github.io/prompt.js/demo.html#)
+[Demo](https://erichsia7.github.io/ripple.js/)
 ## download
-[prompt.js](https://github.com/EricHsia7/prompt.js/raw/main/prompt.js)
+[prompt.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
