@@ -23,8 +23,11 @@ background:#1082af;
 color:#fff;
 }
 </style>
-<div class="btn" style="position:relative;left:50%;transform:translateX(-50%)" id="b1" ripple-onclick="alert('按鈕1')">按鈕1</div>
+<div class="btn" style="position:relative;left:50%;transform:translateX(-50%)" id="b1">按鈕1</div>
+
+<div class="btn" style="position:relative;left:50%;transform:translateX(-50%)" id="b2" ripple-onclick="alert('按鈕2')">按鈕2</div>
+
 <script src="ripple.js"></script>
 <script>
-ripple('#b1','#1082af','0.4',1200); 
+ripple('.btn','#1082af','0.4',1200); 
 </script>
