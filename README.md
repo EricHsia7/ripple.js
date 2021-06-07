@@ -14,6 +14,7 @@ ripple.js
 ripple(<selector :JQuery Selector>,<ripple color :string>,<opacity :string>,<time :number>,<click_remove_style_width&height :'true' or 'false'>);
 ``` 
  ripple color : any css color code
+ 
  opacity : css opacity(0 - 1)
  2.html
  onclick event
