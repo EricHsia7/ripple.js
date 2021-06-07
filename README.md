@@ -4,7 +4,7 @@ JQuery
 ```
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 ```
-ripple.js
+ripple.min.js
 ```
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
 ```
@@ -96,4 +96,4 @@ Click here.
 ```
 [Demo](https://erichsia7.github.io/ripple.js/)
 ## download
-[prompt.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
+[prompt.min.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
