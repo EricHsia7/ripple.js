@@ -11,9 +11,10 @@ ripple.js
 ## use
 1.script
 ```
-ripple(<selector :string>,<ripple color :string>,<opacity :string>,<time :number>,<click_remove_style_width&height :'true' or 'false'>);
+ripple(<selector :JQuery Selector>,<ripple color :string>,<opacity :string>,<time :number>,<click_remove_style_width&height :'true' or 'false'>);
 ``` 
-ripple color can any css color code.
+ ripple color : any css color code
+ opacity : css opacity(0 - 1)
 ## example
 ```
 <meta charset="UTF-8">
