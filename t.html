@@ -1,22 +1,27 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<a style="position:absolute;top:0px;left:0px;overflow:hidden;width:100px;height:100px;">button</a>
-
+<style>
+.btn {
+  width:100px;
+  height:60px;
+  border-radius:99em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:23px;
+  font-weight:bold;
+  margin-top:30px;
+}
+#b1 {
+background:#fafafa;
+  color:#1082af;
+}
+#b2 {
+background:#1082af;
+color:#fff;
+}
+</style>
+<div class="btn" style="position:relative;left:50%;transform:translateX(-50%)" id="b1" ripple-onclick="alert('按鈕1')">按鈕1</div>
+<script src="ripple.js"></script>
 <script>
-$("a").on("click", function (eee) {
-            var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var ppid = "";
-            for (var i = 0; i < 16; i++) {
-                var randomNumber = Math.floor(Math.random() * ppchars.length);
-                ppid += ppchars.substring(randomNumber, randomNumber + 1);
-            }
-            var xPos = eee.pageX - $(this).offset().left - $(this).width() * 2;
-            var yPos = eee.pageY - $(this).offset().top - $(this).width() * 2;
-            $(this).append('<div style="width:' + $(this).width() * 4 + "px;height:" + $(this).width() * 4 + "px;position:absolute;top:" + yPos + "px;left:" + xPos + 'px;border-radius:99em;transform:scale(0);transition:transform 0.9s,opacity 0.8s;opacity:0.3; overflow:hidden; user-select:none;" id="' + ppid +'" class="btn-cc-pp"></div>');
-            setTimeout(function () { 
-                $("#" + ppid).css({ transform: "scale(1)", opacity: "0" });
-            }, 1);
-            setTimeout(function () {
-                $("#" + ppid).remove();
-            }, 800);
-        });
+ripple('#b1','#1082af','0.4',1200); 
 </script>
