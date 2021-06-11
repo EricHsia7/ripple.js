@@ -96,4 +96,4 @@ Click here.
 ```
 [Demo](https://erichsia7.github.io/ripple.js/)
 ## download
-[prompt.min.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
+[ripple.min.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
