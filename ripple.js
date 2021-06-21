@@ -25,7 +25,7 @@ $(this).attr('rippleid',ppida);
     pou = 'absolute' ;
   }
   if($(this).css('position') === 'fixed') {
-    pou = 'filed' ;
+    pou = 'fixed' ;
   }
   
             $(this).css({'width':$(this).width() + 'px','height':$(this).height() + 'px','position':pou,'overflow':'hidden','outline':'none','-webkit-tap-highlight-color':'rgba(0,0,0,0)'});
