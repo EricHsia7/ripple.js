@@ -87,7 +87,9 @@
 <div id="github" ripple-onclick="window.open('https://github.com/EricHsia7/ripple.js')"></div>
 <script src="https://erichsia7.github.io/ripple.js/v2/ripple.js?1"></script>
 <script>
-  ripple('#b1', '#1082af', '0.4', 1200);
-  ripple('#b2,#github', '#fff', '0.4', 1200);
-  ripple('#d1', '#000', '0.3', 1200);
+  ripple(document.querySelector('#b1'), '#1082af', '0.4', 1200);
+  ripple(document.querySelector('#b2'), '#fff', '0.4', 1200);
+  ripple(document.querySelector('#github'), '#fff', '0.4', 1200);
+  ripple(document.querySelector('#d1'), '#000', '0.3', 1200);
+  
 </script>
