@@ -1,27 +1,18 @@
 # ripple.js
 ## install
-JQuery
+ripple.js
 ```
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-```
-ripple.min.js
-```
-<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://erichsia7.github.io/ripple.js/v2/ripple.js"></script>
 ```
 ## use
 1.script
 ```
-ripple(<selector :JQuery Selector>,<ripple color :string>,<opacity :string>,<time :number>,<click_remove_style_width&height :'true' or 'false'>);
+ripple(<selector :Selector>,<ripple color :string>,<opacity :string>,<time :number>);
 ``` 
 * ripple color : any css color code
  
 * opacity : css opacity(0 - 1)
  
- 2.html
- * onclick event
- ```
- <div class="class" ripple-onclick="<javascript-code>"></div>
- ```
 ## example
 ```
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -89,9 +80,9 @@ Click here.
 <div id="github" ripple-onclick="window.open('https://github.com/EricHsia7/ripple.js')"></div>
 <script src="ripple.min.js?b87c3651"></script>
 <script>
-  ripple('#b1','#1082af','0.4',1200,'true');
-  ripple('#b2,#github','#fff','0.4',1200,'true');
-  ripple('#d1','#000','0.3',1200,'true');
+  ripple('#b1','#1082af','0.4',1200);
+  ripple('#b2,#github','#fff','0.4',1200);
+  ripple('#d1','#000','0.3',1200);
 </script>
 ```
 [Demo](https://erichsia7.github.io/ripple.js/)
