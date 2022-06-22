@@ -87,4 +87,4 @@ Click here.
 ```
 [Demo](https://erichsia7.github.io/ripple.js/)
 ## download
-[ripple.min.js](https://github.com/EricHsia7/ripple.js/raw/main/ripple.min.js)
+[ripple.min.js](https://raw.githubusercontent.com/EricHsia7/ripple.js/main/v2/ripple.js)
