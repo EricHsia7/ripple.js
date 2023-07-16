@@ -1,6 +1,6 @@
 {
   "name": "@erichsia7/ripple",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Add ripple effect to anything",
   "main": "dist/index.min.js",
   "private": false,
