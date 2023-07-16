@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Add ripple effect to anything",
   "main": "dist/index.min.js",
+  "private": false,
   "scripts": {
     "build": "webpack --mode=production",
     "test": "jest"
@@ -11,7 +12,11 @@
     "type": "git",
     "url": "https://github.com/EricHsia7/ripple.js.git"
   },
-  "keywords": ["ripple", "interaction", "javascript"],
+  "keywords": [
+    "ripple",
+    "interaction",
+    "javascript"
+  ],
   "author": "EricHsia7",
   "bugs": {
     "url": "https://github.com/erichsia7/ripple.js/issues"
@@ -25,6 +30,5 @@
     "webpack": "^5.50.0",
     "webpack-cli": "^4.8.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
