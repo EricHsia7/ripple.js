@@ -1,61 +1,123 @@
-    function ripple(select,color,opacity,time,removewh) {
-$(select).on( "click", function( eee ) {
-    if(removewh === 'true') {
-  $(this).css({'width':'','height':''});
+const ripple = {
+  supportTouch: function () {
+    if ('ontouchstart' in document.documentElement) {
+      return true
     }
-var ogstyle = $(this).attr('style');
+    else {
+      return false
+    }
+  },
+  addTo: function (selector, color, duration, callback) {
+    var Allelements = document.querySelectorAll(selector)
+    if (Allelements) {
+      if (Allelements.length === undefined) {
+        Allelements = [Allelements]
+      }
+      if (Allelements.length === 0) {
+        throw (new Error(`Element was not found.`))
+      }
+      if (typeof callback === 'function') {
+        callback = [callback]
+      }
+      else {
+        if (!Array.isArray(callback) || callback.length === undefined) {
+          var callback = []
+        }
+      }
+      if (callback) {
+        if (callback.length === undefined) {
+          if (typeof callback === 'function') {
+            callback = [callback]
+          } else {
+            var callback = []
+          }
+        }
+      }
+      else {
+        var callback = []
+      }
 
-var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var ppid = "";
-            for (var i = 0; i < 5; i++) {
-                var randomNumber = Math.floor(Math.random() * ppchars.length);
-                ppid += ppchars.substring(randomNumber, randomNumber + 1);
+      for (var k = 0; k < Allelements.length; k++) {
+        ripple._addToSingleElement(Allelements[k], color, duration, callback[k]);
+      }
+      return `Ripple effect was added to ${Allelements.length} element${(Allelements.length > 1 ? 's' : '')}.`
+    }
+    else {
+      throw (new Error(`Element was not found.`))
+    }
+  },
+  _addToSingleElement: function (element, color, duration, callback) {
+    var eventlistener = 'mousedown'
+    if (ripple.supportTouch()) {
+      eventlistener = 'touchstart'
+    }
+    element.addEventListener(eventlistener, function (event) {
+      var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+      var ripple_id = "";
+      for (var i = 0; i < 16; i++) {
+        var idrandomNumber = Math.floor(Math.random() * idchars.length);
+        ripple_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
+      }
+      var scroll_x = document.documentElement.scrollLeft
+      var scroll_y = document.documentElement.scrollTop
+      var x = event.pageX
+      var y = event.pageY
+      var element_rect = element.getBoundingClientRect()
+      var element_x = element_rect.x + scroll_x
+      var element_y = element_rect.y + scroll_y
+      var element_width = element.clientWidth
+      var element_height = element.clientHeight
+      var relative_x = x - element_x
+      var relative_y = y - element_y
+      var ripple_size = Math.max(element_width, element_height)
+      var element_position = getComputedStyle(element).getPropertyValue('position')
+      if (!(element_position === 'absolute') && !(element_position === 'fixed')) {
+        element_position = 'relative'
+      }
+      var css = `.ripple-element-${ripple_id} {position:${element_position};overflow:hidden;width:${element_width}px;height:${element_height}px; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-mask-image: -webkit-radial-gradient(white, black);mask-image: -webkit-radial-gradient(white, black);}.ripple-element-ripple-${ripple_id} {background:${color};width:${ripple_size}px; height:${ripple_size}px;border-radius:50%;position:absolute; top:${relative_y - 0.5 * ripple_size}px; left:${relative_x - 0.5 * ripple_size}px;transform:scale(0); opacity:0;animation-duration: ${duration}ms;animation-name: ripple-animation-opacity-${ripple_id},ripple-animation-zoom-${ripple_id};animation-iteration-count: forward;animation-timing-function:linear;}@keyframes ripple-animation-opacity-${ripple_id} {0% {opacity:0.15;}60% {opacity:0.15;}100% { opacity:0;} } @keyframes ripple-animation-zoom-${ripple_id} {0% {transform:scale(0.1)}65% {  transform:scale(2)}100% {transform:scale(2)}}`
+      element.classList.add(`ripple-element-${ripple_id}`)
+      var css_style_element = document.createElement("style")
+      css_style_element.innerHTML = css
+      css_style_element.id = `ripple-css-${ripple_id}`
+      element.appendChild(css_style_element)
+      var ripple_element_ripple = document.createElement("div")
+      ripple_element_ripple.id = `ripple-element-ripple-${ripple_id}`
+      ripple_element_ripple.classList.add(`ripple-element-ripple-${ripple_id}`)
+      element.appendChild(ripple_element_ripple)
+
+      if (typeof callback === 'function') {
+        document.getElementById(`ripple-element-ripple-${ripple_id}`).addEventListener('animationstart', function (e) {
+          setTimeout(function () {
+            callback()
+            if (!(document.getElementById(`ripple-element-ripple-${ripple_id}`) === null)) {
+              element.classList.remove(`ripple-element-${ripple_id}`)
+              document.getElementById(`ripple-element-ripple-${ripple_id}`).remove()
+              document.getElementById(`ripple-css-${ripple_id}`).remove()
             }
-
-            var ppcharsa = "0123456789abcdefghijklmnopqrstuvwxyz";
-            var ppida = "";
-            for (var ia = 0; ia < 5; ia++) {
-                var randomNumbera = Math.floor(Math.random() * ppcharsa.length);
-                ppida += ppcharsa.substring(randomNumbera, randomNumbera + 1);
-            }
-$(this).attr('rippleid',ppida);
-
-  var pou = 'relative' ;
-  if($(this).css('position') === 'absolute') {
-    pou = 'absolute' ;
+          }, duration * 0.75)
+        }, { once: true });
+      }
+      else {
+        document.getElementById(`ripple-element-ripple-${ripple_id}`).addEventListener('animationend', function (e) {
+          if (!(document.getElementById(`ripple-element-ripple-${ripple_id}`) === null)) {
+            element.classList.remove(`ripple-element-${ripple_id}`)
+            document.getElementById(`ripple-element-ripple-${ripple_id}`).remove()
+            document.getElementById(`ripple-css-${ripple_id}`).remove()
+          }
+        }, { once: true })
+        setTimeout(function () {
+          if (!(document.getElementById(`ripple-element-ripple-${ripple_id}`) === null)) {
+            element.classList.remove(`ripple-element-${ripple_id}`)
+            document.getElementById(`ripple-element-ripple-${ripple_id}`).remove()
+            document.getElementById(`ripple-css-${ripple_id}`).remove()
+          }
+        }, duration + 50);
+      }
+    })
   }
-  if($(this).css('position') === 'fixed') {
-    pou = 'fixed' ;
-  }
-  
-            $(this).css({'width':$(this).width() + 'px','height':$(this).height() + 'px','position':pou,'overflow':'hidden','outline':'none','-webkit-tap-highlight-color':'rgba(0,0,0,0)'});
- ggww = ($(this).width()+$(this).height())*2 ;
-if($(this).width() > $(this).height()) {
-ggww = $(this).width()*4 ;
-}
-else {
-ggww = $(this).height()*4 ;
-}
+};
 
- var xPos = (eee.pageX - $(this).offset().left)-(ggww/2);
- var yPos = (eee.pageY - $(this).offset().top)-(ggww/2);
-
-$(this).append('<div style="width:' + ggww + 'px;height:' + ggww + 'px;position: absolute;top:' + yPos + 'px;left:' + xPos + 'px;border-radius:99em;transform:scale(0);transition:transform ' + (time/1000) + 's,opacity ' + (time/1.5/1000) + 's;opacity:' + opacity + ';background:' + color + '; overflow:hidden; -webkit-user-select:none; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);transition-timing-function: ease-out;" id="' + ppid + '"></div>');
-
-setTimeout(function () {
-                    $('#' + ppid).css({'transform':'scale(1)'});
-                }, 1);
-  setTimeout(function () {
-                    $('#' + ppid).css({'opacity':'0'});
-                }, 5);
-     setTimeout(function () {
-                    $('#' + ppid).remove();
-                    $('*[rippleid="' + ppida + '"]').attr('style',ogstyle);
-                }, time/0.9);
-  if($(this).attr('ripple-onclick') != '') {
-
-  eval('setTimeout(function() {' + $(this).attr('ripple-onclick') + '},' + ((5+(time/1.5))/2) + ');');
-  
+if (!window.document) {
+  throw (new Error('Ripple.js need a window with a document.'));
 }
-});
-}
+window.ripple = ripple;
