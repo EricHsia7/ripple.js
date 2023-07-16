@@ -1,6 +1,6 @@
 /* v1.0.4 */
 const ripple = {
-  supportTouch: function (): boolean {
+  supportTouch: function () {
     if ('ontouchstart' in document.documentElement) {
       return true;
     } else {
