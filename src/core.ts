@@ -154,14 +154,14 @@ declare global {
   }
 }
 
+if (!(window as WindowWithDocument).document) {
+  throw new Error('Ripple.js need a window with a document.');
+}
+
 const ripple = {
   supportTouch,
   addTo,
   __addToSingleElement,
 };
 
-if (!(window as WindowWithDocument).document) {
-  throw new Error('Ripple.js need a window with a document.');
-}
-
-(window as WindowWithDocument).ripple = ripple;
+export default ripple;
