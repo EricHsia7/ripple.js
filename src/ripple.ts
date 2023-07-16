@@ -1,6 +1,6 @@
 /* v1.0.4 */
 const ripple = {
-  supportTouch: function (): boolean {
+  supportTouch: function () {
     if ('ontouchstart' in document.documentElement) {
       return true;
     } else {
@@ -8,11 +8,11 @@ const ripple = {
     }
   },
   addTo: function (
-    selector: string,
-    color: string,
-    duration: number,
+    selector,
+    color,
+    duration,
     callback?: Function | Function[]
-  ): string {
+  ) {
     var Allelements = document.querySelectorAll(selector);
     if (Allelements) {
       if (Allelements.length === 0) {
@@ -54,11 +54,11 @@ const ripple = {
     }
   },
   __addToSingleElement: function (
-    element: HTMLElement,
-    color: string,
-    duration: number,
-    callback?: Function
-  ): void {
+    element,
+    color,
+    duration,
+    callback
+  ) {
     var eventlistener = 'mousedown';
     if (ripple.supportTouch()) {
       eventlistener = 'touchstart';
@@ -71,7 +71,7 @@ const ripple = {
       if (typeof callback === 'function') {
         document
           .getElementById(`ripple-element-ripple-${ripple_id}`)
-          ?.addEventListener(
+          .addEventListener(
             'animationstart',
             function (e) {
               setTimeout(function () {
@@ -93,7 +93,7 @@ const ripple = {
       } else {
         document
           .getElementById(`ripple-element-ripple-${ripple_id}`)
-          ?.addEventListener(
+          .addEventListener(
             'animationend',
             function (e) {
               const rippleElement = document.getElementById(
