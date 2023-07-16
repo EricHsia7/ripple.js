@@ -12,14 +12,12 @@ module.exports = {
       name: 'ripple',
       type: 'umd',
       umdNamedDefine: true,
-      export: "default",
     },
-    globalObject: 'this || self',
   },
   module: {
     rules: [
       {
-        test: /\.js|ts$/, // Use babel-loader for JavaScript files
+        test: /\.js|ts|jsx|tsx$/, // Use babel-loader for JavaScript files
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
