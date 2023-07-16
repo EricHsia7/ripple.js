@@ -9,11 +9,11 @@ export interface WindowWithDocument extends Window {
   document: Document;
 }
 
-export function supportTouch(): boolean {
+const supportTouch = function (): boolean {
   return 'ontouchstart' in document.documentElement;
 }
 
-export function addTo(
+const addTo = function (
   selector: string,
   color: string,
   duration: number,
@@ -34,13 +34,13 @@ export function addTo(
   }
 
   for (let k = 0; k < Allelements.length; k++) {
-    __addToSingleElement(Allelements[k], color, duration, callback[k]);
+    ripple.__addToSingleElement(Allelements[k], color, duration, callback[k]);
   }
 
   return `Ripple effect was added to ${Allelements.length} element${Allelements.length > 1 ? 's' : ''}.`;
 }
 
-function __addToSingleElement(element: HTMLElement, color: string, duration: number, callback?: Function): void {
+const __addToSingleElement = function (element: HTMLElement, color: string, duration: number, callback?: Function): void {
   const eventlistener = supportTouch() ? 'touchstart' : 'mousedown';
   element.addEventListener(eventlistener, (event) => {
     const idchars = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -75,7 +75,7 @@ function __addToSingleElement(element: HTMLElement, color: string, duration: num
     const ripple_zoom = Math.max(
       2,
       Math.max(distance_top_left_corner, distance_top_right_corner, distance_bottom_left_corner, distance_bottom_right_corner) /
-        (ripple_size / 2)
+      (ripple_size / 2)
     );
 
     let element_position = getComputedStyle(element).getPropertyValue('position');
@@ -147,12 +147,13 @@ function __addToSingleElement(element: HTMLElement, color: string, duration: num
     }
   });
 }
-
+/*
 declare global {
   interface Window {
     ripple: typeof ripple;
   }
 }
+*/
 
 const ripple = {
   supportTouch,
