@@ -9,11 +9,11 @@ export interface WindowWithDocument extends Window {
   document: Document;
 }
 
-const supportTouch = function (): boolean {
+function supportTouch(): boolean {
   return 'ontouchstart' in document.documentElement;
 }
 
-const addTo = function (
+function addTo(
   selector: string,
   color: string,
   duration: number,
@@ -40,7 +40,7 @@ const addTo = function (
   return `Ripple effect was added to ${Allelements.length} element${Allelements.length > 1 ? 's' : ''}.`;
 }
 
-const __addToSingleElement = function (element: HTMLElement, color: string, duration: number, callback?: Function): void {
+function __addToSingleElement(element: HTMLElement, color: string, duration: number, callback?: Function): void {
   const eventlistener = supportTouch() ? 'touchstart' : 'mousedown';
   element.addEventListener(eventlistener, (event) => {
     const idchars = '0123456789abcdefghijklmnopqrstuvwxyz';

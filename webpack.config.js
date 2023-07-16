@@ -12,6 +12,7 @@ module.exports = {
       name: 'ripple',
       type: 'umd',
       umdNamedDefine: true,
+      export: 'default',
     },
   },
   module: {
