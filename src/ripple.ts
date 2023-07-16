@@ -11,7 +11,7 @@ const ripple = {
     selector,
     color,
     duration,
-    callback?: Function | Function[]
+    callback
   ) {
     var Allelements = document.querySelectorAll(selector);
     if (Allelements) {
