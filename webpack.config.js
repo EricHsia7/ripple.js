@@ -22,13 +22,17 @@ module.exports = {
         test: /\.js|ts$/, // Use babel-loader for JavaScript files
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-flow', '@babel/preset-typescript'],
+            plugins: ['@babel/plugin-syntax-flow'],
+          },
         },
       },
     ],
   },
   resolve: {
-    extensions: ['.js','.ts'], // File extensions to resolve
+    extensions: ['.js', '.ts'], // File extensions to resolve
     mainFields: ['browser', 'module', 'main'],
   },
   optimization: {
