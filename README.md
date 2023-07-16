@@ -14,7 +14,7 @@ Selector is a query selector string like `.button`, `.container .button`, or `.b
 Color can comes in any format that is supported by browser like `#000000`, `rgba(0, 0, 0, 0.5)`, or `var(--custom-css-variable)`.
 
 ### Duration
-Duration is a time parameters for animation of a ripple effect, and it's measured in million seconds.
+Duration is a time parameter for animation of a ripple effect, and it's measured in million seconds.
 
 ### Callback
 Callback is a function that you want to execute when the animation end. If it has a selector including multiple elements, you need to use an array to load up all the functions like `[ function() {/*...*/}, function() {/*...*/} ]`.
