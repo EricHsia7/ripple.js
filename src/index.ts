@@ -1,3 +1,3 @@
-import {ripple} from './core.ts'
+import {ripple} from './core'
 
 export default ripple;
