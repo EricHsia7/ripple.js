@@ -70,11 +70,18 @@ const ripple = {
       var relative_x = x - element_x
       var relative_y = y - element_y
       var ripple_size = Math.max(element_width, element_height)
+      var ripple_center_x = relative_x - 0.5 * ripple_size
+      var ripple_center_y = relative_y - 0.5 * ripple_size
+      var distance_top = ripple_center_y - 0
+      var distance_left = ripple_center_x - 0
+      var distance_right = element_width - ripple_center_x
+      var distance_bottom = element_height - ripple_center_y
+      var ripple_zoom = Math.max(2, (Math.max(distance_top, distance_left, distance_right, distance_bottom) / ripple_size))
       var element_position = getComputedStyle(element).getPropertyValue('position')
       if (!(element_position === 'absolute') && !(element_position === 'fixed')) {
         element_position = 'relative'
       }
-      var css = `.ripple-element-${ripple_id} {position:${element_position};overflow:hidden;width:${element_width}px;height:${element_height}px; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-mask-image: -webkit-radial-gradient(white, black);mask-image: -webkit-radial-gradient(white, black);}.ripple-element-ripple-${ripple_id} {background:${color};width:${ripple_size}px; height:${ripple_size}px;border-radius:50%;position:absolute; top:${relative_y - 0.5 * ripple_size}px; left:${relative_x - 0.5 * ripple_size}px;transform:scale(0); opacity:0;animation-duration: ${duration}ms;animation-name: ripple-animation-opacity-${ripple_id},ripple-animation-zoom-${ripple_id};animation-iteration-count: forward;animation-timing-function:linear;}@keyframes ripple-animation-opacity-${ripple_id} {0% {opacity:0.15;}60% {opacity:0.15;}100% { opacity:0;} } @keyframes ripple-animation-zoom-${ripple_id} {0% {transform:scale(0.1)}65% {  transform:scale(2)}100% {transform:scale(2)}}`
+      var css = `.ripple-element-${ripple_id} {position:${element_position};overflow:hidden;width:${element_width}px;height:${element_height}px; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-mask-image: -webkit-radial-gradient(white, black);mask-image: -webkit-radial-gradient(white, black);}.ripple-element-ripple-${ripple_id} {background:${color};width:${ripple_size}px; height:${ripple_size}px;border-radius:50%;position:absolute; top:${ripple_center_y}px; left:${ripple_center_x}px;transform:scale(0); opacity:0;animation-duration: ${duration}ms;animation-name: ripple-animation-opacity-${ripple_id},ripple-animation-zoom-${ripple_id};animation-iteration-count: forward;animation-timing-function:linear;}@keyframes ripple-animation-opacity-${ripple_id} {0% {opacity:0.15;}60% {opacity:0.15;}100% { opacity:0;} } @keyframes ripple-animation-zoom-${ripple_id} {0% {transform:scale(0.1)}65% {  transform:scale(${ripple_zoom})}100% {transform:scale(${ripple_zoom})}}`
       element.classList.add(`ripple-element-${ripple_id}`)
       var css_style_element = document.createElement("style")
       css_style_element.innerHTML = css
