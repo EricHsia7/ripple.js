@@ -1,3 +1,1 @@
-import {ripple} from './core'
-
-export default ripple;
+import ripple from './core';
