@@ -17,7 +17,7 @@ Color can comes in any format that is supported by browser like `#000000`, `rgba
 Duration is a time parameters for animation of a ripple effect, and it's measured in million seconds.
 
 ### Callback
-Callback is a function that you want to execute when the animation end.
+Callback is a function that you want to execute when the animation end. If it has a selector including multiple elements, you need to use an array to load up all the functions like `[ function() {/*...*/}, function() {/*...*/} ]`.
 
 ## Demo
 [Live demo](https://erichsia7.github.io/ripple.js/)
