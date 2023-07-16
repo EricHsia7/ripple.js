@@ -40,7 +40,7 @@ const ripple = {
       for (var k = 0; k < Allelements.length; k++) {
         ripple._addToSingleElement(Allelements[k], color, duration, callback[k]);
       }
-      return `ripple effect was added to ${Allelements.length} element${(Allelements.length > 1 ? 's' : '')}.`
+      return `Ripple effect was added to ${Allelements.length} element${(Allelements.length > 1 ? 's' : '')}.`
     }
     else {
       throw (new Error(`Element was not found.`))
@@ -129,6 +129,6 @@ const ripple = {
 };
 
 if (!window.document) {
-  throw (new Error('ripple.js need a window with a document.'));
+  throw (new Error('Ripple.js need a window with a document.'));
 }
 window.ripple = ripple;

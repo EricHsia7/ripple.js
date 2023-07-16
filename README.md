@@ -1,4 +1,4 @@
-# ripple.js
+# Ripple.js
 ## Install
 ```
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
