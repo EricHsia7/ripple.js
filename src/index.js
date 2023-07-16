@@ -1,4 +1,4 @@
-/* v1.0.3 */
+/* v1.0.4 */
 const ripple = {
   supportTouch: function () {
     if ('ontouchstart' in document.documentElement) {
@@ -36,7 +36,7 @@ const ripple = {
       }
 
       for (var k = 0; k < Allelements.length; k++) {
-        ripple._addToSingleElement(Allelements[k], color, duration, callback[k]);
+        ripple.__addToSingleElement(Allelements[k], color, duration, callback[k]);
       }
       return `Ripple effect was added to ${Allelements.length} element${(Allelements.length > 1 ? 's' : '')}.`
     }
@@ -44,7 +44,7 @@ const ripple = {
       throw (new Error(`Element was not found.`))
     }
   },
-  _addToSingleElement: function (element, color, duration, callback) {
+  __addToSingleElement: function (element, color, duration, callback) {
     var eventlistener = 'mousedown'
     if (ripple.supportTouch()) {
       eventlistener = 'touchstart'
