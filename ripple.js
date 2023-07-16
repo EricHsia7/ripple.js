@@ -80,7 +80,7 @@ const ripple = {
       var distance_top_right_corner = Math.sqrt(Math.pow(distance_top, 2) + Math.pow(distance_right, 2))
       var distance_bottom_left_corner = Math.sqrt(Math.pow(distance_bottom, 2) + Math.pow(distance_left, 2))
       var distance_bottom_right_corner = Math.sqrt(Math.pow(distance_bottom, 2) + Math.pow(distance_right, 2))
-      var ripple_zoom = Math.max(2, (Math.max(distance_top, distance_left, distance_right, distance_bottom, distance_top_left_corner, distance_top_right_corner, distance_bottom_left_corner, distance_bottom_right_corner) / (ripple_size / 2)))
+      var ripple_zoom = Math.max(2, (Math.max(distance_top_left_corner, distance_top_right_corner, distance_bottom_left_corner, distance_bottom_right_corner) / (ripple_size / 2)))
       var element_position = getComputedStyle(element).getPropertyValue('position')
       if (!(element_position === 'absolute') && !(element_position === 'fixed')) {
         element_position = 'relative'
