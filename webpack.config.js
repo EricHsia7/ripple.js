@@ -24,7 +24,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-flow'],
+            presets: ['@babel/preset-env', '@babel/preset-flow', '@babel/preset-typescript'],
             plugins: ['@babel/plugin-syntax-flow'],
           },
         },
@@ -32,7 +32,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js','.ts'], // File extensions to resolve
+    extensions: ['.js', '.ts'], // File extensions to resolve
     mainFields: ['browser', 'module', 'main'],
   },
   optimization: {
