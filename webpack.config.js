@@ -30,7 +30,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'], // File extensions to resolve
+    extensions: ['.ts', '.tsx', '.js', '.jsx'], // File extensions to resolve
     mainFields: ['browser', 'module', 'main'],
   },
   optimization: {
