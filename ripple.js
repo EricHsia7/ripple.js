@@ -10,9 +10,6 @@ const ripple = {
   addTo: function (selector, color, duration, callback) {
     var Allelements = document.querySelectorAll(selector)
     if (Allelements) {
-      if (Allelements.length === undefined) {
-        Allelements = [Allelements]
-      }
       if (Allelements.length === 0) {
         throw (new Error(`Element was not found.`))
       }
