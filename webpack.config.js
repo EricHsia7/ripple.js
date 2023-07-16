@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
   target: ['web', 'es6'], // Target the browser environment
   mode: 'production', // Set the mode to 'production' or 'development'
-  entry: './src/index.js', // Entry point of your application
+  entry: './src/index.ts', // Entry point of your application
   output: {
     filename: 'ripple.min.js', // Output bundle filename
     path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
@@ -19,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/, // Use babel-loader for JavaScript files
+        test: /\.js|ts$/, // Use babel-loader for JavaScript files
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
@@ -28,7 +28,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js'], // File extensions to resolve
+    extensions: ['.js','.ts'], // File extensions to resolve
     mainFields: ['browser', 'module', 'main'],
   },
   optimization: {
