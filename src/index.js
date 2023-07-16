@@ -1,4 +1,4 @@
-/* v1.0.1 */
+/* v1.0.2 */
 const ripple = {
   supportTouch: function () {
     if ('ontouchstart' in document.documentElement) {
@@ -103,7 +103,7 @@ const ripple = {
               document.getElementById(`ripple-element-ripple-${ripple_id}`).remove()
               document.getElementById(`ripple-css-${ripple_id}`).remove()
             }
-          }, duration * 0.75)
+          }, duration * 1)
         }, { once: true });
       }
       else {
