@@ -1,7 +1,7 @@
 # Ripple.js
 ## Install
 ```
-<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://unpkg.com/@erichsia7/ripple@latest/dist/index.min.js"></script>
 ```
 ## Usage
 ```
