@@ -76,7 +76,7 @@ const ripple = {
       var distance_left = ripple_center_x - 0
       var distance_right = element_width - ripple_center_x
       var distance_bottom = element_height - ripple_center_y
-      var ripple_zoom = Math.max(2, (Math.max(distance_top, distance_left, distance_right, distance_bottom) / ripple_size))
+      var ripple_zoom = Math.max(2, (Math.max(distance_top, distance_left, distance_right, distance_bottom) / (ripple_size / 2)))
       var element_position = getComputedStyle(element).getPropertyValue('position')
       if (!(element_position === 'absolute') && !(element_position === 'fixed')) {
         element_position = 'relative'
