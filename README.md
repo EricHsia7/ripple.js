@@ -1,4 +1,5 @@
 # Ripple.js
+[![npm](https://img.shields.io/npm/v/@erichsia7/ripple.svg)](https://www.npmjs.com/package/@erichsia7/ripple)  [![unpkg](https://img.shields.io/badge/unpkg-latest-blue.svg)](https://unpkg.com/@erichsia7/ripple/)
 ## Install
 1. CDN (Content Delivery Network)
 ```
