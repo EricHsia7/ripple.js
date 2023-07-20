@@ -1,8 +1,15 @@
 # Ripple.js
 ## Install
+1. CDN (Content Delivery Network)
 ```
 <script src="https://unpkg.com/@erichsia7/ripple@latest/dist/index.min.js"></script>
 ```
+2. npm
+```
+const ripple = require('@erichsia7/ripple')
+```
+> Notice that you need to transpile it from TypeScript to native JavaScript (es6) to ensure that browser can conduct it.
+
 ## Usage
 ```
 ripple.addTo(selector, color, duration, callback)
