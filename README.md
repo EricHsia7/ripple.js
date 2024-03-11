@@ -2,17 +2,17 @@
 [![npm](https://img.shields.io/npm/v/@erichsia7/ripple.svg)](https://www.npmjs.com/package/@erichsia7/ripple)  [![unpkg](https://img.shields.io/badge/unpkg-latest-blue.svg)](https://unpkg.com/@erichsia7/ripple/)
 ## Install
 1. CDN (Content Delivery Network)
-```
+```html
 <script src="https://unpkg.com/@erichsia7/ripple@latest/dist/index.min.js"></script>
 ```
 2. npm
-```
+```typescript
 const ripple = require('@erichsia7/ripple')
 ```
 > Notice that you need to transpile it from TypeScript to native JavaScript (es6) to ensure that browser can conduct it.
 
 ## Usage
-```
+```typescript
 ripple.addTo(selector, color, duration, callback)
 ```
 ### Selector
