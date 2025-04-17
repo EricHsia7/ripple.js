@@ -2,11 +2,39 @@ import { getLocalCSSPropertyValue, isTouchSupported } from './tools';
 import { AccentColor } from './type';
 
 function playRippleEffect(event: Event): void {
+  const scrollX = document.documentElement.scrollLeft;
+  const scrollY = document.documentElement.scrollTop;
+  const x = event.pageX;
+  const y = event.pageY;
   const targetElement = event.target as HTMLElement;
-  const currentPosition = getLocalCSSPropertyValue(targetElement, 'position');
-  switch (currentPosition) {
+  const targetElementRect = targetElement.getBoundingClientRect();
+  const targetElementX = targetElementRect.x + scrollX;
+  const targetElementY = targetElementRect.y + scrollY;
+  const taregtElementWidth = targetElementRect.width;
+  const targetElementHeight = targetElementRect.height;
+  const pointerEelativeX = x - targetElementX;
+  const pointerRelativeY = y - targetElementY;
+  const rippleSize = Math.max(taregtElementWidth, targetElementHeight);
+  const rippleBoundaryX = pointerEelativeX - 0.5 * rippleSize;
+  const rippleBoundaryY = pointerRelativeY - 0.5 * rippleSize;
+  const distanceToTop = pointerRelativeY - 0;
+  const distanceToLeft = pointerEelativeX - 0;
+  const distanceToRight = taregtElementWidth - pointerEelativeX;
+  const distanceToBottom = targetElementHeight - pointerRelativeY;
+  const distanceToTopLeftCorner = Math.hypot(distanceToTop, distanceToLeft);
+  const distanceToTopRightCorner = Math.hypot(distanceToTop, distanceToRight);
+  const distanceToBottomLeftCorner = Math.hypot(distanceToBottom, distanceToLeft);
+  const distanceBottomRightCorner = Math.hypot(distanceToBottom, distanceToRight);
+  const rippleScale = Math.max(2, Math.max(distanceToTopLeftCorner, distanceToTopRightCorner, distanceToBottomLeftCorner, distanceBottomRightCorner) / (rippleSize / 2));
+
+  const css = `.ripple-element-${ripple_id} {position: ${element_position};overflow: hidden;width: ${element_width}px;height: ${element_height}px;outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-mask-image: -webkit-radial-gradient(white, black);mask-image: -webkit-radial-gradient(white, black);}
+  
+  .ripple-element-ripple-${ripple_id} { background:${color};width: ${ripple_size}px; height:${ripple_size}px;border-radius: 50%;position: absolute; top: ${ripple_boundary_y}px; left:${ripple_boundary_x}px;transform: scale(0); opacity: 0;animation-duration: ${duration}ms;animation-name: ripple-animation-opacity-${ripple_id},ripple-animation-zoom-${ripple_id};animation-iteration-count: forward;animation-timing-function:linear;-webkit-user-select: none;user-select: none;}`;
+
+  const initialPosition = getLocalCSSPropertyValue(targetElement, 'position');
+  switch (initialPosition) {
     case 'static':
-      targetElement.classList.add('ripple-position-relative');
+      targetElement.classList.add('ripple-parent-position-relative');
       break;
     case 'fixed':
       break;
@@ -20,13 +48,45 @@ function playRippleEffect(event: Event): void {
       break;
   }
 
+  targetElement.style.setProperty('--ripple-parent-size-width', `${taregtElementWidth}px`);
+  targetElement.style.setProperty('--ripple-parent-size-height', `${targetElementHeight}px`);
+  targetElement.classList.add('ripple-parent-size');
+
+  targetElement.classList.add('ripple-parent-overflow');
+
   const newRippleElement = document.createElement('div');
+
+  newRippleElement.style.setProperty('--ripple-position-left', `${rippleBoundaryX}px`);
+  newRippleElement.style.setProperty('--ripple-position-top', `${rippleBoundaryY}px`);
+  newRippleElement.classList.add('ripple-position');
+
+  newRippleElement.style.setProperty('--ripple-size-width', `${rippleSize}px`);
+  newRippleElement.style.setProperty('--ripple-size-height', `${rippleSize}px`);
+  newRippleElement.classList.add('ripple-size');
+
+  newRippleElement.classList.add('ripple-appearance');
+
+  newRippleElement.style.setProperty('--ripple-scale', rippleScale.toString());
+  newRippleElement.classList.add('ripple-scale');
+
+  newRippleElement.addEventListener(
+    'animationend',
+    function (event2: Event) {
+      const rippleEndEvent = new CustomEvent('rippleend');
+      targetElement.dispatchEvent(rippleEndEvent);
+      const target2 = event2.target as HTMLElement;
+      target2.remove();
+    },
+    { once: true }
+  );
 }
 
-export type AccentColor = string | [red: number, green: number, blue: number, alpha?: number];
+export type AccentColor = string; // | [red: number, green: number, blue: number, alpha?: number];
 
 export function addRippleTo(targetElement: HTMLElement, accentColor: AccentColor, duration: number): void {
   const triggerEventIndex = isTouchSupported() ? 0 : 1;
   const triggerEvent = ['touchstart', 'mousedown'][triggerEventIndex];
-  targetElement.addEventListener(triggerEvent, function (event: Event) {});
+  targetElement.style.setProperty('--ripple-duration', `${duration}ms`);
+  targetElement.style.setProperty('--ripple-accent-color', accentColor);
+  targetElement.addEventListener(triggerEvent, playRippleEffect);
 }
