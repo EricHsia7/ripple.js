@@ -17,7 +17,6 @@
 }
 
 /* ripple */
-
 .ripple-position {
     position: absolute;
     left: var(--ripple-position-left);

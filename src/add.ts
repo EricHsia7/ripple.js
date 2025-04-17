@@ -27,10 +27,6 @@ function playRippleEffect(event: Event): void {
   const distanceBottomRightCorner = Math.hypot(distanceToBottom, distanceToRight);
   const rippleScale = Math.max(2, Math.max(distanceToTopLeftCorner, distanceToTopRightCorner, distanceToBottomLeftCorner, distanceBottomRightCorner) / (rippleSize / 2));
 
-  const css = `.ripple-element-${ripple_id} {position: ${element_position};overflow: hidden;width: ${element_width}px;height: ${element_height}px;outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-mask-image: -webkit-radial-gradient(white, black);mask-image: -webkit-radial-gradient(white, black);}
-  
-  .ripple-element-ripple-${ripple_id} { background:${color};width: ${ripple_size}px; height:${ripple_size}px;border-radius: 50%;position: absolute; top: ${ripple_boundary_y}px; left:${ripple_boundary_x}px;transform: scale(0); opacity: 0;animation-duration: ${duration}ms;animation-name: ripple-animation-opacity-${ripple_id},ripple-animation-zoom-${ripple_id};animation-iteration-count: forward;animation-timing-function:linear;-webkit-user-select: none;user-select: none;}`;
-
   const initialPosition = getLocalCSSPropertyValue(targetElement, 'position');
   switch (initialPosition) {
     case 'static':
@@ -76,9 +72,15 @@ function playRippleEffect(event: Event): void {
       targetElement.dispatchEvent(rippleEndEvent);
       const target2 = event2.target as HTMLElement;
       target2.remove();
+      targetElement.classList.remove('ripple-parent-size');
+      targetElement.classList.remove('ripple-parent-overflow');
+      targetElement.classList.remove('ripple-parent-position-relative');
     },
     { once: true }
   );
+  targetElement.appendChild(newRippleElement);
+  const rippleStartEvent = new CustomEvent('ripplestart');
+  targetElement.dispatchEvent(rippleStartEvent);
 }
 
 export type AccentColor = string; // | [red: number, green: number, blue: number, alpha?: number];
