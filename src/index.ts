@@ -1,3 +1,5 @@
-import ripple from './core';
+const ripple = {
+    
+};
 
 export default ripple;

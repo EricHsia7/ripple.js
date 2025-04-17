@@ -13,12 +13,7 @@ function supportTouch(): boolean {
   return 'ontouchstart' in document.documentElement;
 }
 
-function addTo(
-  selector: string,
-  color: string,
-  duration: number,
-  callback?: Function | Function[]
-): string {
+function addTo(selector: string, color: string, duration: number, callback?: Function | Function[]): string {
   const Allelements = document.querySelectorAll(selector);
 
   if (Allelements.length === 0) {
@@ -72,11 +67,7 @@ function __addToSingleElement(element: HTMLElement, color: string, duration: num
     const distance_top_right_corner = Math.sqrt(Math.pow(distance_top, 2) + Math.pow(distance_right, 2));
     const distance_bottom_left_corner = Math.sqrt(Math.pow(distance_bottom, 2) + Math.pow(distance_left, 2));
     const distance_bottom_right_corner = Math.sqrt(Math.pow(distance_bottom, 2) + Math.pow(distance_right, 2));
-    const ripple_zoom = Math.max(
-      2,
-      Math.max(distance_top_left_corner, distance_top_right_corner, distance_bottom_left_corner, distance_bottom_right_corner) /
-      (ripple_size / 2)
-    );
+    const ripple_zoom = Math.max(2, Math.max(distance_top_left_corner, distance_top_right_corner, distance_bottom_left_corner, distance_bottom_right_corner) / (ripple_size / 2));
 
     let element_position = getComputedStyle(element).getPropertyValue('position');
     if (!(element_position === 'absolute') && !(element_position === 'fixed')) {
